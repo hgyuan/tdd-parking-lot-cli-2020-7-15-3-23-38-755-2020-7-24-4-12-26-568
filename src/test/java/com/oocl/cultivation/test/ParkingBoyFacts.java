@@ -12,10 +12,10 @@ class ParkingBoyFacts {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car(1);
-        Boy boy = new Boy();
+        Boy boy = new Boy(parkingLot);
 
         //when
-        Ticket ticket = boy.parking(car,parkingLot);
+        Ticket ticket = boy.parking(car);
 
         //then
         assertEquals(car.getId(),ticket.getClassNumber());

@@ -2,7 +2,17 @@ package com.oocl.cultivation.test;
 
 
 public class Boy {
-    public Ticket parking(Car car, ParkingLot parkingLot) {
-        return null;
+
+    ParkingLot parkingLot;
+
+    public Boy(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+
+    public Ticket parking(Car car) {
+        parkingLot.parking(car);
+        Ticket ticket = new Ticket();
+        ticket.setClassNumber(car.getId());
+        return ticket;
     }
 }
