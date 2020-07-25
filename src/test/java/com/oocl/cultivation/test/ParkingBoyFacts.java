@@ -118,7 +118,7 @@ class ParkingBoyFacts {
         String message = parkingBoy.getMessageOfFetch(ticket);
 
         //then
-        assertEquals("Unrecognized parking ticket",message);
+        assertEquals("Unrecognized parking ticket", message);
     }
 
     @Test
@@ -131,7 +131,7 @@ class ParkingBoyFacts {
         String message = parkingBoy.getMessageOfFetch(null);
 
         //then
-        assertEquals("Please provide your parking ticket",message);
+        assertEquals("Please provide your parking ticket", message);
     }
 
     @Test
@@ -148,6 +148,26 @@ class ParkingBoyFacts {
         String message = parkingBoy.getMessageOfParking(car);
 
         //then
-        assertEquals("Not enough position",message);
+        assertEquals("Not enough position", message);
+    }
+
+    @Test
+    void should_return_ticket_when_parking_11car_2parking_lot_parking_boy() {
+        //given
+        ParkingLot parkingLotOne = new ParkingLot();
+        ParkingLot parkingLotTwo = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotOne);
+        parkingBoy.addParkingLot(parkingLotOne);
+        parkingBoy.addParkingLot(parkingLotTwo);
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i <= 10; i++) {
+            cars.add(new Car(1));
+        }
+
+        //when
+        List<Ticket> tickets = parkingBoy.parkingSequence(cars);
+
+        //then
+        assertEquals(11,tickets.size());
     }
 }

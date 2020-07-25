@@ -8,16 +8,29 @@ import java.util.List;
 
 public class ParkingBoy {
 
-    ParkingLot parkingLot;
-    List<Ticket> tickets ;
+    List<ParkingLot> parkingLots;
+    List<Ticket> tickets;
 
     public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+        parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
         tickets = new ArrayList<>();
     }
 
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
     public Ticket parking(Car car) {
-        if (!parkingLot.parking(car)) {
+        boolean isFullParkingLot = true;
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.isParking()) {
+                parkingLot.parking(car);
+                isFullParkingLot = false;
+                break;
+            }
+        }
+        if (isFullParkingLot) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
@@ -30,11 +43,16 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
-        if(ticket==null){
+        if (ticket == null) {
             return null;
         }
         ticket.setUsed(true);
-        return parkingLot.fetch(ticket.getCarNumber());
+        for(ParkingLot parkingLot:parkingLots){
+            if(parkingLot.isParking()){
+                return parkingLot.fetch(ticket.getCarNumber());
+            }
+        }
+        return null;
     }
 
     public List<Ticket> parking(List<Car> cars) {
@@ -46,19 +64,35 @@ public class ParkingBoy {
     }
 
     public String getMessageOfFetch(Ticket ticket) {
-        if(ticket==null){
+        if (ticket == null) {
             return "Please provide your parking ticket";
         }
-        if(!tickets.contains(ticket)||ticket.isUsed()){
+        if (!tickets.contains(ticket) || ticket.isUsed()) {
             return "Unrecognized parking ticket";
         }
         return "";
     }
 
     public String getMessageOfParking(Car car) {
-        if(parkingLot.getCars().size()>=parkingLot.getMaxSize()){
+        boolean isAllFullParkingLot = true;
+        for(ParkingLot parkingLot:parkingLots){
+            if (parkingLot.getCars().size() < parkingLot.getMaxSize()) {
+                isAllFullParkingLot = false;
+            }
+        }
+        if(isAllFullParkingLot){
             return "Not enough position";
         }
+
         return "";
+    }
+
+    public void addParkingLot(ParkingLot parkingLot) {
+        parkingLots.add(parkingLot);
+    }
+
+
+    public List<Ticket> parkingSequence(List<Car> cars) {
+        return new ArrayList<>(0);
     }
 }

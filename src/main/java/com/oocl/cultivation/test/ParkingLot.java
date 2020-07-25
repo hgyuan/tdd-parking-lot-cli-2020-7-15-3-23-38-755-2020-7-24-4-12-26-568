@@ -30,11 +30,15 @@ public class ParkingLot {
     }
 
     public boolean parking(Car car) {
-        if (maxSize == cars.size()) {
+        if (!isParking()) {
             return false;
         }
         cars.add(car);
         return true;
+    }
+
+    public boolean isParking() {
+        return maxSize > cars.size();
     }
 
     public Car fetch(Integer carNumber) {
