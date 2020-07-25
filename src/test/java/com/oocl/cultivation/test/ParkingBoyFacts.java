@@ -86,4 +86,21 @@ class ParkingBoyFacts {
         //then
         assertNull(fetchCar);
     }
+
+    @Test
+    void should_return_null_when_parking_given_full_parking_lot_parking_boy_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for(int i=0;i<10;i++){
+            parkingBoy.parking(new Car(i));
+        }
+        Car car = new Car(11);
+
+        //when
+        Ticket ticket = parkingBoy.parking(car);
+
+        //then
+        assertNull(ticket);
+    }
 }
