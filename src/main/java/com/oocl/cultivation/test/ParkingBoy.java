@@ -15,11 +15,13 @@ public class ParkingBoy {
     }
 
     public Ticket parking(Car car) {
-        parkingLot.parking(car);
+        if (!parkingLot.parking(car)) {
+            return null;
+        }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
-        String ticketId = format.format(calendar.getTime())+Math.random()*1000;
-        Ticket ticket = new Ticket(car.getId(),ticketId);
+        String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
+        Ticket ticket = new Ticket(car.getId(), ticketId);
         ticket.setCarNumber(car.getId());
         return ticket;
     }
@@ -31,7 +33,7 @@ public class ParkingBoy {
 
     public List<Ticket> parking(List<Car> cars) {
         List<Ticket> tickets = new ArrayList<>();
-        for(Car car :cars){
+        for (Car car : cars) {
             tickets.add(parking(car));
         }
         return tickets;

@@ -36,7 +36,7 @@ class ParkingBoyFacts {
         Car returnCar = parkingBoy.fetch(ticket);
 
         //then
-        assertEquals(car,returnCar);
+        assertEquals(car, returnCar);
 
     }
 
@@ -54,13 +54,13 @@ class ParkingBoyFacts {
         List<Ticket> tickets = parkingBoy.parking(cars);
 
         //then
-        assertEquals(cars.size(),tickets.size());
+        assertEquals(cars.size(), tickets.size());
     }
 
     @Test
     void should_return_null_when_fetch_given_wrong_ticket_parking_boy_parking_lot() {
         //given
-        Ticket ticket = new Ticket(12,"1");
+        Ticket ticket = new Ticket(12, "1");
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
@@ -92,7 +92,7 @@ class ParkingBoyFacts {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             parkingBoy.parking(new Car(i));
         }
         Car car = new Car(11);
