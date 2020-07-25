@@ -46,6 +46,9 @@ public class ParkingBoy {
     }
 
     public String getMessageOfFetch(Ticket ticket) {
+        if(ticket==null){
+            return "Please provide your parking ticket";
+        }
         if(!tickets.contains(ticket)||ticket.isUsed()){
             return "Unrecognized parking ticket";
         }
