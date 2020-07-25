@@ -133,4 +133,21 @@ class ParkingBoyFacts {
         //then
         assertEquals("Please provide your parking ticket",message);
     }
+
+    @Test
+    void should_return_not_enough_position_when_get_message_of_parking_given_car_parking_boy_full_parking_lot() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.parking(new Car(i));
+        }
+        Car car = new Car(11);
+
+        //when
+        String message = parkingBoy.getMessageOfParking(car);
+
+        //then
+        assertEquals("Not enough position",message);
+    }
 }

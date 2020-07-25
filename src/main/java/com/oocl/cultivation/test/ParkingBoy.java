@@ -54,4 +54,8 @@ public class ParkingBoy {
         }
         return "";
     }
+
+    public String getMessageOfParking(Car car) {
+        return "";
+    }
 }
