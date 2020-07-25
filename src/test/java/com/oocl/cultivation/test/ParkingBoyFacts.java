@@ -161,7 +161,7 @@ class ParkingBoyFacts {
         parkingBoy.addParkingLot(parkingLotTwo);
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i <= 10; i++) {
-            cars.add(new Car(1));
+            cars.add(new Car(i));
         }
 
         //when
@@ -169,5 +169,25 @@ class ParkingBoyFacts {
 
         //then
         assertEquals(11,tickets.size());
+    }
+
+    @Test
+    void should_return_true_when_is_have_parking_lot_full_given_10car_2parking_lot_parking_boy() {
+        //given
+        ParkingLot parkingLotOne = new ParkingLot();
+        ParkingLot parkingLotTwo = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotOne);
+        parkingBoy.addParkingLot(parkingLotOne);
+        parkingBoy.addParkingLot(parkingLotTwo);
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            cars.add(new Car(i));
+        }
+
+        //when
+        boolean result = parkingBoy.isHaveParkingLot(cars);
+
+        //then
+        assertTrue(result);
     }
 }
