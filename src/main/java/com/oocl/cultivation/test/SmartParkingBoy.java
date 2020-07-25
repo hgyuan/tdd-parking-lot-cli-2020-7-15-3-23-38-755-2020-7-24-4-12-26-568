@@ -12,7 +12,7 @@ public class SmartParkingBoy extends ParkingBoy {
 
     }
 
-    public Ticket smartParking(Car car){
+    private Ticket smartParking(Car car){
         ParkingLot usedParkingLot = null;
         Integer currentMinSize = Integer.MAX_VALUE;
         for(ParkingLot parkingLot:parkingLots){
@@ -22,13 +22,7 @@ public class SmartParkingBoy extends ParkingBoy {
             }
         }
         usedParkingLot.parking(car);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
-        Calendar calendar = Calendar.getInstance();
-        String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
-        Ticket ticket = new Ticket(car.getId(), ticketId);
-        ticket.setCarNumber(car.getId());
-        tickets.add(ticket);
-        return ticket;
+        return createTicket(car);
     }
 
     public List<Ticket> smartParking(List<Car> cars) {

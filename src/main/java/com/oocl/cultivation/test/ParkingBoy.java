@@ -27,6 +27,16 @@ public class ParkingBoy {
         return isAllFullParkingLot;
     }
 
+    protected Ticket createTicket(Car car){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
+        Ticket ticket = new Ticket(car.getId(), ticketId);
+        ticket.setCarNumber(car.getId());
+        tickets.add(ticket);
+        return ticket;
+    }
+
     public Ticket parking(Car car) {
         if (isAllFullParkingLot()) {
             return null;
@@ -37,13 +47,7 @@ public class ParkingBoy {
                 break;
             }
         }
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
-        Calendar calendar = Calendar.getInstance();
-        String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
-        Ticket ticket = new Ticket(car.getId(), ticketId);
-        ticket.setCarNumber(car.getId());
-        tickets.add(ticket);
-        return ticket;
+        return createTicket(car);
     }
 
     public Car fetch(Ticket ticket) {
@@ -90,7 +94,6 @@ public class ParkingBoy {
     public void addParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
     }
-
 
     public List<Ticket> parkingSequence(List<Car> cars) {
         return parking(cars);
