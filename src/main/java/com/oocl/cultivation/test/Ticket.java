@@ -2,13 +2,19 @@ package com.oocl.cultivation.test;
 
 public class Ticket {
 
-    private Integer classNumber;
+    private Integer carNumber;
+    private Integer id;
 
-    public Integer getClassNumber() {
-        return classNumber;
+    public Ticket(Integer carNumber, Integer id) {
+        this.carNumber = carNumber;
+        this.id = id;
     }
 
-    public void setClassNumber(Integer classNumber) {
-        this.classNumber = classNumber;
+    public void setCarNumber(int carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public int getCarNumber() {
+        return carNumber;
     }
 }

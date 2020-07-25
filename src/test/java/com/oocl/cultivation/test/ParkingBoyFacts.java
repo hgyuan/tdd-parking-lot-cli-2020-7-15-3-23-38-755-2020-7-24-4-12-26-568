@@ -12,13 +12,30 @@ class ParkingBoyFacts {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car(1);
-        Boy boy = new Boy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //when
-        Ticket ticket = boy.parking(car);
+        Ticket ticket = parkingBoy.parking(car);
 
         //then
-        assertEquals(car.getId(),ticket.getClassNumber());
+        assertEquals(car.getId(), ticket.getCarNumber());
+    }
+
+    @Test
+    void should_return_car_when_fetch_given_parking_boy_parking_lot_ticket_a_car_in_parking_lot() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        parkingBoy.parking(car);
+        Ticket ticket = new Ticket(1, 1);
+
+        //when
+        Car returnCar = parkingBoy.fetch(ticket);
+
+        //then
+        assertEquals(car,returnCar);
+
 
     }
 }
