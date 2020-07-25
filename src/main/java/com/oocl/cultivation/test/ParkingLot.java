@@ -19,6 +19,7 @@ public class ParkingLot {
     public Car fetch(Integer carNumber){
         for(Car car:cars){
             if(car.getId().equals(carNumber)){
+                cars.remove(car);
                 return car;
             }
         }

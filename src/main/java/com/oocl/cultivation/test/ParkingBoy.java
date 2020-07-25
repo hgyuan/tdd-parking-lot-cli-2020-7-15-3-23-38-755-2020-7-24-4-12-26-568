@@ -25,6 +25,7 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
+        ticket.setUsed(true);
         return parkingLot.fetch(ticket.getCarNumber());
     }
 
