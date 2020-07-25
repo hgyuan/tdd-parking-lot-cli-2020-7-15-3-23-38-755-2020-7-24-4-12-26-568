@@ -17,13 +17,9 @@ public class ParkingBoy {
         tickets = new ArrayList<>();
     }
 
-    public List<ParkingLot> getParkingLots() {
-        return parkingLots;
-    }
-
-    public boolean isAllFullParkingLot(){
+    public boolean isAllFullParkingLot() {
         boolean isAllFullParkingLot = true;
-        for(ParkingLot parkingLot:parkingLots){
+        for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.isParking()) {
                 isAllFullParkingLot = false;
             }
@@ -35,8 +31,8 @@ public class ParkingBoy {
         if (isAllFullParkingLot()) {
             return null;
         }
-        for(ParkingLot parkingLot:parkingLots){
-            if(parkingLot.isParking()){
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.isParking()) {
                 parkingLot.parking(car);
                 break;
             }
@@ -55,8 +51,8 @@ public class ParkingBoy {
             return null;
         }
         ticket.setUsed(true);
-        for(ParkingLot parkingLot:parkingLots){
-            if(parkingLot.isParking()){
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.isParking()) {
                 tickets.remove(ticket);
                 return parkingLot.fetch(ticket.getCarNumber());
             }
@@ -84,7 +80,7 @@ public class ParkingBoy {
 
     public String getMessageOfParking(Car car) {
         boolean isAllFullParkingLot = isAllFullParkingLot();
-        if(isAllFullParkingLot){
+        if (isAllFullParkingLot) {
             return "Not enough position";
         }
 
@@ -102,8 +98,8 @@ public class ParkingBoy {
 
     public boolean isHaveParkingLot(List<Car> cars) {
         parkingSequence(cars);
-        for(ParkingLot parkingLot:parkingLots){
-            if(!parkingLot.isParking()){
+        for (ParkingLot parkingLot : parkingLots) {
+            if (!parkingLot.isParking()) {
                 return true;
             }
         }
