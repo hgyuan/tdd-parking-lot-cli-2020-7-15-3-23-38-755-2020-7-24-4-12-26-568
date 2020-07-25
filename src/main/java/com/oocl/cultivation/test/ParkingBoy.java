@@ -93,6 +93,6 @@ public class ParkingBoy {
 
 
     public List<Ticket> parkingSequence(List<Car> cars) {
-        return new ArrayList<>(0);
+        return parking(cars);
     }
 }
