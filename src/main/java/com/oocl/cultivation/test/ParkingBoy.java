@@ -1,7 +1,9 @@
 package com.oocl.cultivation.test;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ParkingBoy {
@@ -14,7 +16,10 @@ public class ParkingBoy {
 
     public Ticket parking(Car car) {
         parkingLot.parking(car);
-        Ticket ticket = new Ticket(car.getId(),1);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        String ticketId = format.format(calendar.getTime())+Math.random()*1000;
+        Ticket ticket = new Ticket(car.getId(),ticketId);
         ticket.setCarNumber(car.getId());
         return ticket;
     }
@@ -24,6 +29,10 @@ public class ParkingBoy {
     }
 
     public List<Ticket> parking(List<Car> cars) {
-        return new ArrayList<>(0);
+        List<Ticket> tickets = new ArrayList<>();
+        for(Car car :cars){
+            tickets.add(parking(car));
+        }
+        return tickets;
     }
 }

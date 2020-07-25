@@ -31,7 +31,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         parkingBoy.parking(car);
-        Ticket ticket = new Ticket(1, 1);
+        Ticket ticket = new Ticket(1, "1");
 
         //when
         Car returnCar = parkingBoy.fetch(ticket);

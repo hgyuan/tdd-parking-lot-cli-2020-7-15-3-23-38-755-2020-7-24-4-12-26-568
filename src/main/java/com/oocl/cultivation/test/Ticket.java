@@ -3,9 +3,9 @@ package com.oocl.cultivation.test;
 public class Ticket {
 
     private Integer carNumber;
-    private Integer id;
+    private String id;
 
-    public Ticket(Integer carNumber, Integer id) {
+    public Ticket(Integer carNumber, String id) {
         this.carNumber = carNumber;
         this.id = id;
     }
