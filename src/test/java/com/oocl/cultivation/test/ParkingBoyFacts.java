@@ -107,5 +107,17 @@ class ParkingBoyFacts {
         assertNull(ticket);
     }
 
+    @Test
+    void should_return_unrecognized_parking_ticket_when_get_message_of_fetch_given_wrong_ticket_parking_boy_parking_lot() {
+        //given
+        Ticket ticket = new Ticket(12, "1");
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
+        //when
+        String message = parkingBoy.getMessageOfFetch(ticket);
+
+        //then
+        assertEquals("Unrecognized parking ticket",message);
+    }
 }

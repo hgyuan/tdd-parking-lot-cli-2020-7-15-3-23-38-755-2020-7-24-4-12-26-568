@@ -41,4 +41,8 @@ public class ParkingBoy {
         }
         return tickets;
     }
+
+    public String getMessageOfFetch(Ticket ticket) {
+        return "";
+    }
 }
