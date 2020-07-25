@@ -13,14 +13,6 @@ public class ParkingLot {
         cars = new ArrayList<>(10);
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
-    }
-
     public Integer getMaxSize() {
         return maxSize;
     }
@@ -49,5 +41,9 @@ public class ParkingLot {
             }
         }
         return null;
+    }
+
+    public Integer getCarSize(){
+        return cars.size();
     }
 }
