@@ -21,17 +21,25 @@ public class ParkingBoy {
         return parkingLots;
     }
 
-    public Ticket parking(Car car) {
-        boolean isFullParkingLot = true;
-        for (ParkingLot parkingLot : parkingLots) {
+    public boolean isAllFullParkingLot(){
+        boolean isAllFullParkingLot = true;
+        for(ParkingLot parkingLot:parkingLots){
             if (parkingLot.isParking()) {
-                parkingLot.parking(car);
-                isFullParkingLot = false;
-                break;
+                isAllFullParkingLot = false;
             }
         }
-        if (isFullParkingLot) {
+        return isAllFullParkingLot;
+    }
+
+    public Ticket parking(Car car) {
+        if (isAllFullParkingLot()) {
             return null;
+        }
+        for(ParkingLot parkingLot:parkingLots){
+            if(parkingLot.isParking()){
+                parkingLot.parking(car);
+                break;
+            }
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
@@ -49,6 +57,7 @@ public class ParkingBoy {
         ticket.setUsed(true);
         for(ParkingLot parkingLot:parkingLots){
             if(parkingLot.isParking()){
+                tickets.remove(ticket);
                 return parkingLot.fetch(ticket.getCarNumber());
             }
         }
@@ -74,12 +83,7 @@ public class ParkingBoy {
     }
 
     public String getMessageOfParking(Car car) {
-        boolean isAllFullParkingLot = true;
-        for(ParkingLot parkingLot:parkingLots){
-            if (parkingLot.getCars().size() < parkingLot.getMaxSize()) {
-                isAllFullParkingLot = false;
-            }
-        }
+        boolean isAllFullParkingLot = isAllFullParkingLot();
         if(isAllFullParkingLot){
             return "Not enough position";
         }
@@ -94,5 +98,15 @@ public class ParkingBoy {
 
     public List<Ticket> parkingSequence(List<Car> cars) {
         return parking(cars);
+    }
+
+    public boolean isHaveParkingLot(List<Car> cars) {
+        parkingSequence(cars);
+        for(ParkingLot parkingLot:parkingLots){
+            if(!parkingLot.isParking()){
+                return true;
+            }
+        }
+        return false;
     }
 }
