@@ -1,6 +1,9 @@
 package com.oocl.cultivation.test;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingBoy {
 
     ParkingLot parkingLot;
@@ -18,5 +21,9 @@ public class ParkingBoy {
 
     public Car fetch(Ticket ticket) {
         return parkingLot.fetch(ticket.getCarNumber());
+    }
+
+    public List<Ticket> parking(List<Car> cars) {
+        return new ArrayList<>(0);
     }
 }

@@ -2,6 +2,9 @@ package com.oocl.cultivation.test;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -36,6 +39,22 @@ class ParkingBoyFacts {
         //then
         assertEquals(car,returnCar);
 
+    }
 
+    @Test
+    void should_return_2_ticket_when_parking_given_two_car_parking_boy_parking_lot() {
+        Car firstCar = new Car(1);
+        Car secondCar = new Car(2);
+        List<Car> cars = new ArrayList<>();
+        cars.add(firstCar);
+        cars.add(secondCar);
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+
+        //when
+        List<Ticket> tickets = parkingBoy.parking(cars);
+
+        //then
+        assertEquals(cars.size(),tickets.size());
     }
 }
