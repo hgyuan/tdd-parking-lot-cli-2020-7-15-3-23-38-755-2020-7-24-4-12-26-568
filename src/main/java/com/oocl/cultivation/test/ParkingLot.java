@@ -5,12 +5,28 @@ import java.util.List;
 
 public class ParkingLot {
 
-    List<Car> cars;
+    private List<Car> cars;
     private Integer maxSize;
 
     public ParkingLot() {
         maxSize = 10;
         cars = new ArrayList<>(10);
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public Integer getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(Integer maxSize) {
+        this.maxSize = maxSize;
     }
 
     public boolean parking(Car car) {

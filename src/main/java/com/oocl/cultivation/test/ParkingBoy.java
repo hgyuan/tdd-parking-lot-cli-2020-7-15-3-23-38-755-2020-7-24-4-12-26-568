@@ -56,6 +56,9 @@ public class ParkingBoy {
     }
 
     public String getMessageOfParking(Car car) {
+        if(parkingLot.getCars().size()>=parkingLot.getMaxSize()){
+            return "Not enough position";
+        }
         return "";
     }
 }
