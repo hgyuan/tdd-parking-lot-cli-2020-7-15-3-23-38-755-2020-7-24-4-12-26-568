@@ -65,10 +65,13 @@ class ParkingBoyFacts {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //when
-        Car car = parkingBoy.fetch(ticket);
+        Car wrongTicketCar = parkingBoy.fetch(ticket);
+        Car nullTicketCar = parkingBoy.fetch(null);
 
         //then
-        assertNull(car);
+        assertNull(wrongTicketCar);
+        assertNull(nullTicketCar);
+
     }
 
     @Test
@@ -103,4 +106,6 @@ class ParkingBoyFacts {
         //then
         assertNull(ticket);
     }
+
+
 }
