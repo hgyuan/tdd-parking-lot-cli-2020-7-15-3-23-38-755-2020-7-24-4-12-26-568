@@ -9,9 +9,11 @@ import java.util.List;
 public class ParkingBoy {
 
     ParkingLot parkingLot;
+    List<Ticket> tickets ;
 
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
+        tickets = new ArrayList<>();
     }
 
     public Ticket parking(Car car) {
@@ -23,6 +25,7 @@ public class ParkingBoy {
         String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
         Ticket ticket = new Ticket(car.getId(), ticketId);
         ticket.setCarNumber(car.getId());
+        tickets.add(ticket);
         return ticket;
     }
 
@@ -43,6 +46,9 @@ public class ParkingBoy {
     }
 
     public String getMessageOfFetch(Ticket ticket) {
+        if(!tickets.contains(ticket)||ticket.isUsed()){
+            return "Unrecognized parking ticket";
+        }
         return "";
     }
 }
