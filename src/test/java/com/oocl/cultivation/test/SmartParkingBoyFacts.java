@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SmartParkingBoyFacts extends ParkingBoyFacts {
+public class SmartParkingBoyFacts {
 
     @Test
     void should_return_true_when_is_Smart_Parking_given_11car_2parking_lot_parking_boy() {

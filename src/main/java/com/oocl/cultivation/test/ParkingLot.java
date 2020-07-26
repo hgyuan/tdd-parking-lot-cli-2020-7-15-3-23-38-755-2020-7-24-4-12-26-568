@@ -46,4 +46,8 @@ public class ParkingLot {
     public Integer getCarSize(){
         return cars.size();
     }
+
+    public Ticket createTicket(Car car) {
+        return null;
+    }
 }

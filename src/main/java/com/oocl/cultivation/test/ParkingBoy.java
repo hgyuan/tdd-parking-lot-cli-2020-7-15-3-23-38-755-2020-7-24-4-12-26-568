@@ -87,7 +87,6 @@ public class ParkingBoy {
         if (isAllFullParkingLot) {
             return "Not enough position";
         }
-
         return "";
     }
 
