@@ -12,6 +12,11 @@ public class SmartParkingBoy extends ParkingBoy {
 
     }
 
+    @Override
+    public Ticket parking(Car car) {
+        return this.parking(car);
+    }
+
     private Ticket smartParking(Car car){
         ParkingLot usedParkingLot = null;
         Integer currentMinSize = Integer.MAX_VALUE;

@@ -19,6 +19,12 @@ public class ParkingManager {
     }
 
     public Ticket parkingByParkingBoy(Car car) {
+        for(ParkingBoy parkingBoy:parkingBoys){
+            Ticket ticket = parkingBoy.parking(car);
+            if(ticket!=null){
+                return ticket;
+            }
+        }
         return null;
     }
 }

@@ -10,19 +10,28 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         super(parkingLot);
     }
 
-    public List<Ticket> superSmartParking(List<Car> cars) {
+    @Override
+    public Ticket parking(Car car) {
+        return this.parking(car);
+    }
+
+    private Ticket superSmartParking(Car car){
         ParkingLot usedParkingLot = null;
+        Double current = 1.0;
+        for(ParkingLot parkingLot:parkingLots){
+            if(1.0*parkingLot.getCarSize()/parkingLot.getMaxSize()<current){
+                current = 1.0*parkingLot.getCarSize()/parkingLot.getMaxSize();
+                usedParkingLot = parkingLot;
+            }
+        }
+        assert usedParkingLot != null;
+        return usedParkingLot.parking(car);
+    }
+
+    public List<Ticket> superSmartParking(List<Car> cars) {
         List<Ticket> tickets = new ArrayList<>();
         for(Car car:cars){
-            Double current = 1.0;
-            for(ParkingLot parkingLot:parkingLots){
-                if(1.0*parkingLot.getCarSize()/parkingLot.getMaxSize()<current){
-                    current = 1.0*parkingLot.getCarSize()/parkingLot.getMaxSize();
-                    usedParkingLot = parkingLot;
-                }
-            }
-            assert usedParkingLot != null;
-            tickets.add(usedParkingLot.parking(car));
+            tickets.add(superSmartParking(car));
         }
         return tickets;
     }
