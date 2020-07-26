@@ -33,6 +33,22 @@ public class ParkingLotFacts {
     }
 
     @Test
+    void should_return_car_when_fetch_given_ticket() {
+        //given
+        Ticket ticket = new Ticket(1,"1");
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.parking(car);
+
+        //when
+        Car resultCar = parkingLot.fetch(ticket.getCarNumber());
+
+        //then
+        assertEquals(car,resultCar);
+
+    }
+
+    @Test
     void should_return_unrecognized_parking_ticket_when_get_message_of_fetch_given_wrong_ticket_parking_lot() {
         //given
         Ticket ticket = new Ticket(12, "1");
