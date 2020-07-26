@@ -3,6 +3,7 @@ package com.oocl.cultivation.test;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParkingManagerFacts {
     @Test
@@ -49,5 +50,24 @@ public class ParkingManagerFacts {
         //then
         assertEquals(car.getId(),ticket.getCarNumber());
 
+    }
+
+    @Test
+    void should_return_true_when_have_full_parking_lot_given_parking_lot_max_size_car_2parking_lot() {
+        //given
+        ParkingManager parkingManager = new ParkingManager();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLotTwo = new ParkingLot();
+        parkingManager.addParkingLot(parkingLot);
+        parkingManager.addParkingLot(parkingLotTwo);
+        for(int i=0;i<parkingLot.getMaxSize();i++){
+            parkingManager.parking(new Car(i));
+        }
+
+        //when
+        boolean result = parkingManager.isHaveFullParkingLot();
+
+        //then
+        assertTrue(result);
     }
 }

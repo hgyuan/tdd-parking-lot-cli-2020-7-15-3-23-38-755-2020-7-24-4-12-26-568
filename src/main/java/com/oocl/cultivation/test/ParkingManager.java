@@ -41,4 +41,8 @@ public class ParkingManager {
         }
         return parkingBoy.parking(car);
     }
+
+    public boolean isHaveFullParkingLot() {
+        return false;
+    }
 }
