@@ -31,9 +31,14 @@ public class ParkingManager {
     }
 
     public void addParkingLot(ParkingLot parkingLot) {
+        this.parkingLots.add(parkingLot);
     }
 
     public Ticket parking(Car car) {
-        return null;
+        ParkingBoy parkingBoy = new NotSmartParkingBoy();
+        for(ParkingLot parkingLot:parkingLots){
+            parkingBoy.addParkingLot(parkingLot);
+        }
+        return parkingBoy.parking(car);
     }
 }

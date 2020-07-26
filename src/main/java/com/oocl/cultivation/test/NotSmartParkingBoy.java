@@ -3,6 +3,11 @@ package com.oocl.cultivation.test;
 import java.util.List;
 
 public class NotSmartParkingBoy extends ParkingBoy {
+
+    public NotSmartParkingBoy() {
+
+    }
+
     public NotSmartParkingBoy(ParkingLot parkingLot) {
         super(parkingLot);
     }
