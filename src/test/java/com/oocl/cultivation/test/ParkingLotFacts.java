@@ -3,6 +3,7 @@ package com.oocl.cultivation.test;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ParkingLotFacts {
 
@@ -55,22 +56,10 @@ public class ParkingLotFacts {
         ParkingLot parkingLot = new ParkingLot();
 
         //when
-        String message = parkingLot.getMessageOfFetch(ticket);
+        boolean message = parkingLot.isUnusedMyCurrentTicket(ticket);
 
         //then
-        assertEquals("Unrecognized parking ticket", message);
-    }
-
-    @Test
-    void should_return_please_provide_your_parking_ticket_when_get_message_of_fetch_given_null_ticket_parking_lot() {
-        //given
-        ParkingLot parkingLot = new ParkingLot();
-
-        //when
-        String message = parkingLot.getMessageOfFetch(null);
-
-        //then
-        assertEquals("Please provide your parking ticket", message);
+        assertFalse(message);
     }
 
 

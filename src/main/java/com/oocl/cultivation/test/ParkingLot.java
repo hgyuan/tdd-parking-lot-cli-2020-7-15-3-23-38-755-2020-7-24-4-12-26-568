@@ -64,13 +64,10 @@ public class ParkingLot {
         return ticket;
     }
 
-    public String getMessageOfFetch(Ticket ticket) {
-        if (ticket == null) {
-            return "Please provide your parking ticket";
+    public boolean isUnusedMyCurrentTicket(Ticket ticket){
+        if (ticket.getParkingLot()==this && !ticket.isUsed()) {
+            return true;
         }
-        if (ticket.getParkingLot()!=this || ticket.isUsed()) {
-            return "Unrecognized parking ticket";
-        }
-        return "";
+        return false;
     }
 }

@@ -57,18 +57,18 @@ public class ParkingBoy {
     }
 
     public String getMessageOfFetch(Ticket ticket) {
-        String isCorrect="";
-        String current =null;
+        if (ticket == null) {
+            return Message.NULLTICKETE;
+        }
         for(ParkingLot parkingLot:parkingLots){
-            current = parkingLot.getMessageOfFetch(ticket);
-            if(parkingLot.getMessageOfFetch(ticket).equals("")){
+            if(parkingLot.isUnusedMyCurrentTicket(ticket)){
                 return "";
             }
         }
-        return current;
+        return Message.WRONGTICKETE;
     }
 
-    public String getMessageOfParking(Car car) {
+    public String getMessageOfParking(Car car)  {
         boolean isAllFullParkingLot = isAllFullParkingLot();
         if (isAllFullParkingLot) {
             return "Not enough position";
