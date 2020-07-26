@@ -96,6 +96,7 @@ public class ParkingManagerFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingManager parkingManager = new ParkingManager();
         parkingManager.addParkingLot(parkingLot);
+
         //when
         String message = parkingManager.getMessageOfFetch(null);
 

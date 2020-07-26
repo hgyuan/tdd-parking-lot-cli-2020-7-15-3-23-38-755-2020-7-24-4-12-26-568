@@ -60,6 +60,7 @@ public class ParkingManager {
     }
 
     public String getMessageOfFetch(Ticket ticket) {
-        return null;
+        ParkingBoy parkingBoy = new ParkingBoy();
+        return parkingBoy.getMessageOfFetch(ticket);
     }
 }
