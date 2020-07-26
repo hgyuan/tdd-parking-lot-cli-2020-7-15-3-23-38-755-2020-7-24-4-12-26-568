@@ -1,16 +1,20 @@
 package com.oocl.cultivation.test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ParkingLot {
 
     private List<Car> cars;
     private Integer maxSize;
+    private List<Ticket> tickets;
 
     public ParkingLot() {
         maxSize = 10;
         cars = new ArrayList<>(10);
+        tickets = new ArrayList<>();
     }
 
     public Integer getMaxSize() {
@@ -48,6 +52,12 @@ public class ParkingLot {
     }
 
     public Ticket createTicket(Car car) {
-        return null;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
+        Ticket ticket = new Ticket(car.getId(), ticketId);
+        ticket.setCarNumber(car.getId());
+        tickets.add(ticket);
+        return ticket;
     }
 }
