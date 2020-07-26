@@ -9,12 +9,10 @@ import java.util.List;
 public class ParkingBoy {
 
     List<ParkingLot> parkingLots;
-    List<Ticket> tickets;
 
     public ParkingBoy(ParkingLot parkingLot) {
         parkingLots = new ArrayList<>();
         parkingLots.add(parkingLot);
-        tickets = new ArrayList<>();
     }
 
     public boolean isAllFullParkingLot() {
@@ -33,7 +31,6 @@ public class ParkingBoy {
         String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
         Ticket ticket = new Ticket(car.getId(), ticketId);
         ticket.setCarNumber(car.getId());
-        tickets.add(ticket);
         return ticket;
     }
 
@@ -41,13 +38,14 @@ public class ParkingBoy {
         if (isAllFullParkingLot()) {
             return null;
         }
+        Ticket ticket =null;
         for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.isParking()) {
-                parkingLot.parking(car);
+                ticket = parkingLot.parking(car);
                 break;
             }
         }
-        return createTicket(car);
+        return ticket;
     }
 
     public Car fetch(Ticket ticket) {
@@ -57,7 +55,6 @@ public class ParkingBoy {
         ticket.setUsed(true);
         for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.isParking()) {
-                tickets.remove(ticket);
                 return parkingLot.fetch(ticket.getCarNumber());
             }
         }
@@ -73,13 +70,15 @@ public class ParkingBoy {
     }
 
     public String getMessageOfFetch(Ticket ticket) {
-        if (ticket == null) {
-            return "Please provide your parking ticket";
+        String isCorrect="";
+        String current =null;
+        for(ParkingLot parkingLot:parkingLots){
+            current = parkingLot.getMessageOfFetch(ticket);
+            if(parkingLot.getMessageOfFetch(ticket).equals("")){
+                return "";
+            }
         }
-        if (!tickets.contains(ticket) || ticket.isUsed()) {
-            return "Unrecognized parking ticket";
-        }
-        return "";
+        return current;
     }
 
     public String getMessageOfParking(Car car) {

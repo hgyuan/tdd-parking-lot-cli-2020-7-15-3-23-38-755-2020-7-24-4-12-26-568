@@ -112,6 +112,7 @@ class ParkingBoyFacts {
         //given
         Ticket ticket = new Ticket(12, "1");
         ParkingLot parkingLot = new ParkingLot();
+        ticket.setParkingLot(null);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //when

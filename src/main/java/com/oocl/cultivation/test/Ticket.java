@@ -5,6 +5,15 @@ public class Ticket {
     private Integer carNumber;
     private String id;
     private boolean used;
+    private ParkingLot parkingLot;
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
 
     public Ticket(Integer carNumber, String id) {
         this.carNumber = carNumber;

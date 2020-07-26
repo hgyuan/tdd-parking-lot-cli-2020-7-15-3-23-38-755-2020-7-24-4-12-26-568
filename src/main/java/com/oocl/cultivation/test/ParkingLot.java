@@ -9,12 +9,10 @@ public class ParkingLot {
 
     private List<Car> cars;
     private Integer maxSize;
-    private List<Ticket> tickets;
 
     public ParkingLot() {
         maxSize = 10;
         cars = new ArrayList<>(10);
-        tickets = new ArrayList<>();
     }
 
     public Integer getMaxSize() {
@@ -58,7 +56,7 @@ public class ParkingLot {
         String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
         Ticket ticket = new Ticket(car.getId(), ticketId);
         ticket.setCarNumber(car.getId());
-        tickets.add(ticket);
+        ticket.setParkingLot(this);
         return ticket;
     }
 
@@ -66,7 +64,7 @@ public class ParkingLot {
         if (ticket == null) {
             return "Please provide your parking ticket";
         }
-        if (!tickets.contains(ticket) || ticket.isUsed()) {
+        if (ticket.getParkingLot()!=this || ticket.isUsed()) {
             return "Unrecognized parking ticket";
         }
         return "";
