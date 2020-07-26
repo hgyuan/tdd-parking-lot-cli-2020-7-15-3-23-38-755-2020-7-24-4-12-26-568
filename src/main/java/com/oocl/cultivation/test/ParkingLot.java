@@ -61,4 +61,8 @@ public class ParkingLot {
         tickets.add(ticket);
         return ticket;
     }
+
+    public String getMessageOfFetch(Ticket ticket) {
+        return "";
+    }
 }
