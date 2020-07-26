@@ -43,6 +43,11 @@ public class ParkingManager {
     }
 
     public boolean isHaveFullParkingLot() {
+        for(ParkingLot parkingLot:parkingLots){
+            if(parkingLot.getMaxSize()==parkingLot.getCarSize()){
+                return true;
+            }
+        }
         return false;
     }
 }
