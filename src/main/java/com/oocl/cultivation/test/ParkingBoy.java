@@ -15,6 +15,10 @@ public class ParkingBoy {
         parkingLots.add(parkingLot);
     }
 
+    public ParkingBoy(){
+        parkingLots = new ArrayList<>();
+    }
+
     public boolean isAllFullParkingLot() {
         boolean isAllFullParkingLot = true;
         for (ParkingLot parkingLot : parkingLots) {
@@ -71,7 +75,7 @@ public class ParkingBoy {
     public String getMessageOfParking(Car car)  {
         boolean isAllFullParkingLot = isAllFullParkingLot();
         if (isAllFullParkingLot) {
-            return "Not enough position";
+            return Message.NOTENOUGHPOSITION;
         }
         return "";
     }
