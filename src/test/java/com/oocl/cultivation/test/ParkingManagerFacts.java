@@ -34,4 +34,20 @@ public class ParkingManagerFacts {
         //then
         assertEquals(car.getId(),ticket.getCarNumber());
     }
+
+    @Test
+    void should_return_ticket_when_parking_given_car_parking_manager_parking_lot() {
+        //given
+        ParkingManager parkingManager = new ParkingManager();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingManager.addParkingLot(parkingLot);
+        Car car = new Car(1);
+
+        //when
+        Ticket ticket = parkingManager.parking(car);
+
+        //then
+        assertEquals(car.getId(),ticket.getCarNumber());
+
+    }
 }
