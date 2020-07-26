@@ -104,4 +104,21 @@ public class ParkingManagerFacts {
         assertEquals("Please provide your parking ticket", message);
     }
 
+
+    @Test
+    void should_return_unrecognized_parking_ticket_when_get_message_of_fetch_given_wrong_ticket_parking_manager_parking_lot() {
+        //given
+        Ticket ticket = new Ticket(12, "1");
+        ParkingLot parkingLot = new ParkingLot();
+        ticket.setParkingLot(null);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.addParkingLot(parkingLot);
+
+        //when
+        String message = parkingManager.getMessageOfFetch(ticket);
+
+        //then
+        assertEquals("Unrecognized parking ticket", message);
+    }
+
 }

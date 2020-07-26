@@ -61,6 +61,9 @@ public class ParkingManager {
 
     public String getMessageOfFetch(Ticket ticket) {
         ParkingBoy parkingBoy = new ParkingBoy();
+        for(ParkingLot parkingLot:parkingLots){
+            parkingBoy.addParkingLot(parkingLot);
+        }
         return parkingBoy.getMessageOfFetch(ticket);
     }
 }
