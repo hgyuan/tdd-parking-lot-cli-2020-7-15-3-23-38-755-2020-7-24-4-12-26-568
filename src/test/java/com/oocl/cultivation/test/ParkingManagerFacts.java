@@ -121,4 +121,21 @@ public class ParkingManagerFacts {
         assertEquals("Unrecognized parking ticket", message);
     }
 
+    @Test
+    void should_return_not_enough_position_when_get_message_of_parking_given_car_parking_manager_full_parking_lot() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingManager parkingManager = new ParkingManager();
+        for (int i = 0; i < 10; i++) {
+            parkingManager.parking(new Car(i));
+        }
+        Car car = new Car(11);
+
+        //when
+        String message = parkingManager.getMessageOfParking(car);
+
+        //then
+        assertEquals("Not enough position", message);
+    }
+
 }

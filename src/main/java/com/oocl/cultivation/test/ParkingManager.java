@@ -66,4 +66,8 @@ public class ParkingManager {
         }
         return parkingBoy.getMessageOfFetch(ticket);
     }
+
+    public String getMessageOfParking(Car car) {
+        return null;
+    }
 }
