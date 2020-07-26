@@ -25,13 +25,14 @@ public class ParkingLot {
         this.maxSize = maxSize;
     }
 
-    public boolean parking(Car car) {
+    public Ticket parking(Car car) {
         if (!isParking()) {
-            return false;
+            return null;
         }
         cars.add(car);
-        return true;
+        return createTicket(car);
     }
+
 
     public boolean isParking() {
         return maxSize > cars.size();

@@ -17,7 +17,18 @@ public class ParkingLotFacts {
 
         //then
         assertEquals(car.getId(),ticket.getCarNumber());
-
     }
 
+    @Test
+    void should_return_ticket_when_parking_given_car_parking_lot() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+
+        //when
+        Ticket ticket = parkingLot.parking(car);
+
+        //then
+        assertEquals(car.getId(),ticket.getCarNumber());
+    }
 }
