@@ -88,4 +88,19 @@ public class ParkingManagerFacts {
         //then
         assertEquals(car,resultCar);
     }
+
+
+    @Test
+    void should_return_please_provide_your_parking_ticket_when_get_message_of_fetch_given_null_ticket_parking_manager_parking_lot() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.addParkingLot(parkingLot);
+        //when
+        String message = parkingManager.getMessageOfFetch(null);
+
+        //then
+        assertEquals("Please provide your parking ticket", message);
+    }
+
 }
