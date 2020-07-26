@@ -50,4 +50,8 @@ public class ParkingManager {
         }
         return false;
     }
+
+    public Car fetch(Ticket ticket) {
+        return null;
+    }
 }
