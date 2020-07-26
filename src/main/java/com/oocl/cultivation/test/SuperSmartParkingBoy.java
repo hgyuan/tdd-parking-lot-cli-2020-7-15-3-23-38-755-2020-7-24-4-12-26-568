@@ -10,8 +10,6 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         super(parkingLot);
     }
 
-
-
     public List<Ticket> superSmartParking(List<Car> cars) {
         ParkingLot usedParkingLot = null;
         List<Ticket> tickets = new ArrayList<>();
@@ -24,8 +22,7 @@ public class SuperSmartParkingBoy extends ParkingBoy {
                 }
             }
             assert usedParkingLot != null;
-            usedParkingLot.parking(car);
-            tickets.add(createTicket(car));
+            tickets.add(usedParkingLot.parking(car));
         }
         return tickets;
     }

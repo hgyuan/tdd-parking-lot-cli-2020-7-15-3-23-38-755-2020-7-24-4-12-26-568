@@ -25,15 +25,6 @@ public class ParkingBoy {
         return isAllFullParkingLot;
     }
 
-    protected Ticket createTicket(Car car){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
-        Calendar calendar = Calendar.getInstance();
-        String ticketId = format.format(calendar.getTime()) + Math.random() * 1000;
-        Ticket ticket = new Ticket(car.getId(), ticketId);
-        ticket.setCarNumber(car.getId());
-        return ticket;
-    }
-
     public Ticket parking(Car car) {
         if (isAllFullParkingLot()) {
             return null;
@@ -48,25 +39,21 @@ public class ParkingBoy {
         return ticket;
     }
 
-    public Car fetch(Ticket ticket) {
-        if (ticket == null) {
-            return null;
-        }
-        ticket.setUsed(true);
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.isParking()) {
-                return parkingLot.fetch(ticket.getCarNumber());
-            }
-        }
-        return null;
-    }
-
     public List<Ticket> parking(List<Car> cars) {
         List<Ticket> tickets = new ArrayList<>();
         for (Car car : cars) {
             tickets.add(parking(car));
         }
         return tickets;
+    }
+
+    public Car fetch(Ticket ticket) {
+        for (ParkingLot parkingLot : parkingLots) {
+            if(ticket!=null&&ticket.getParkingLot()==parkingLot){
+                return parkingLot.fetch(ticket);
+            }
+        }
+        return null;
     }
 
     public String getMessageOfFetch(Ticket ticket) {
@@ -93,17 +80,5 @@ public class ParkingBoy {
         parkingLots.add(parkingLot);
     }
 
-    public List<Ticket> parkingSequence(List<Car> cars) {
-        return parking(cars);
-    }
 
-    public boolean isHaveParkingLot(List<Car> cars) {
-        parkingSequence(cars);
-        for (ParkingLot parkingLot : parkingLots) {
-            if (!parkingLot.isParking()) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

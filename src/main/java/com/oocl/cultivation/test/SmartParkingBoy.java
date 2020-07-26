@@ -22,7 +22,7 @@ public class SmartParkingBoy extends ParkingBoy {
             }
         }
         usedParkingLot.parking(car);
-        return createTicket(car);
+        return usedParkingLot.createTicket(car);
     }
 
     public List<Ticket> smartParking(List<Car> cars) {

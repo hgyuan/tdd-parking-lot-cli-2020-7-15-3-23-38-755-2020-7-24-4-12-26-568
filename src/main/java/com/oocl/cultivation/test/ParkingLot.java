@@ -36,9 +36,13 @@ public class ParkingLot {
         return maxSize > cars.size();
     }
 
-    public Car fetch(Integer carNumber) {
+    public Car fetch(Ticket ticket) {
+        if (ticket == null) {
+            return null;
+        }
+        ticket.setUsed(true);
         for (Car car : cars) {
-            if (car.getId().equals(carNumber)) {
+            if (car.getId().equals(ticket.getCarNumber())) {
                 cars.remove(car);
                 return car;
             }

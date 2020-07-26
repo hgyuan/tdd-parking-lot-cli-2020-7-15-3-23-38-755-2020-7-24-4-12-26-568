@@ -41,7 +41,7 @@ public class ParkingLotFacts {
         parkingLot.parking(car);
 
         //when
-        Car resultCar = parkingLot.fetch(ticket.getCarNumber());
+        Car resultCar = parkingLot.fetch(ticket);
 
         //then
         assertEquals(car,resultCar);
