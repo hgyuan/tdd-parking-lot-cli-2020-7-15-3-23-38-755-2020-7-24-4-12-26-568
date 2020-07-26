@@ -52,6 +52,10 @@ public class ParkingManager {
     }
 
     public Car fetch(Ticket ticket) {
-        return null;
+        ParkingBoy parkingBoy = new NotSmartParkingBoy();
+        for(ParkingLot parkingLot:parkingLots){
+            parkingBoy.addParkingLot(parkingLot);
+        }
+        return parkingBoy.fetch(ticket);
     }
 }
